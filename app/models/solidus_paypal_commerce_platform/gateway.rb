@@ -4,6 +4,8 @@ require 'paypal-checkout-sdk'
 
 module SolidusPaypalCommercePlatform
   class Gateway
+    include PayPalCheckoutSdk::Orders
+
     class Request
       attr_accessor :path, :body, :headers, :verb
 
@@ -14,6 +16,7 @@ module SolidusPaypalCommercePlatform
         @verb = options[:verb]
       end
     end
+    include PayPalCheckoutSdk::Payments
 
     def initialize(options)
       # Cannot use kwargs because of how the Gateway is initialize by Solidus.

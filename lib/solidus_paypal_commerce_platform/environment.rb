@@ -40,8 +40,15 @@ module SolidusPaypalCommercePlatform
     def env_domain
       env.live? ? "www.paypal.com" : "www.sandbox.paypal.com"
     end
+
+    attr_accessor :partner_id, :partner_client_id, :nonce
   end
 
   extend Environment
+
+  # Set some defaults
+  self.nonce = ENV['PAYPAL_NONCE']
+  self.partner_id = ENV['PAYPAL_PARTNER_ID']
+  self.partner_client_id = ENV['PAYPAL_PARTNER_CLIENT_ID']
 end
 
